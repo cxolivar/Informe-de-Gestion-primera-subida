@@ -474,7 +474,7 @@ def main():
                  .format(precision=0, thousands=".", decimal=",")
                  .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
                  ,hide_index=True)
-    st.text("Estandar [2016-2021]: 45-25-1")
+    st.text("Estandar [2016-2021]: 60-25-1")
     st.text("Estandar [2022-2024]: 60-25-1")
 
 
