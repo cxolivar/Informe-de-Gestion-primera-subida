@@ -1,6 +1,6 @@
-streamlit
-pyodbc
-pandas
-numpy
-seaborn
-sqlalchemy
+streamlit==1.37.1
+pyodbc ==5.0.1
+pandas==2.2.2
+numpy==1.26.4
+seaborn==0.12.2
+sQLAlchemy==2.0.25
