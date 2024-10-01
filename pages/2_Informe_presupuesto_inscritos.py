@@ -11,6 +11,7 @@ import pandas as pd
 import time
 import numpy as np
 import seaborn as sns
+import openpyxl
 
 
 
@@ -26,10 +27,10 @@ driver = 'ODBC Driver 18 for SQL Server'
 
 
 # Establecer la conexión
-conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 # seleccion de los programas, se descartan doctorados y magister.
-programas_presupuesto=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion\programas_presupuesto.xlsx")
+programas_presupuesto=pd.read_excel("programas_presupuesto.xlsx")
 programas_presupuesto=programas_presupuesto["UWVPRES_NOMBRE_PROGRAMA"].drop_duplicates().to_list()
 UF=pd.DataFrame({"PERIODO":["202210","202220","202310","202320","202410","202420"],"VALOR UF":[31721,31721,35575,35575,37093,37093]})
 
