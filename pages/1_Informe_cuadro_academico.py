@@ -28,7 +28,7 @@ driver = 'ODBC Driver 18 for SQL Server'
 conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 ### llamo a la tabla de los estandar de secciones.
-estandar=pd.read_excel("main/Datos_estandar.xlsx")
+estandar=pd.read_excel("Datos_estandar.xlsx")
 tabla_final_antiguo=pd.read_excel("tabla_final_antiguo_no_borrar.xlsx")
 
 
