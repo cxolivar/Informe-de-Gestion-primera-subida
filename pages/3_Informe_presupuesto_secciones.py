@@ -4,13 +4,13 @@ Created on Wed Sep 25 09:17:44 2024
 
 @author: Carmen
 """
-
 import streamlit as st
 import pyodbc
 import pandas as pd
 import time
 import numpy as np
 import seaborn as sns
+import openpyxl
 
 
 
@@ -26,7 +26,7 @@ driver = 'ODBC Driver 18 for SQL Server'
 
 
 # Establecer la conexión
-conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 # seleccion de los programas, se descartan doctorados y magister.
 programas_presupuesto=pd.read_excel("programas_presupuesto.xlsx")
