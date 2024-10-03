@@ -22,7 +22,7 @@ import openpyxl
 server = 'svr-uautonoma-prd.database.windows.net'
 database = 'db-uautonoma-prd'
 username = 'sa_uautonoma'
-password = 'Admin.prd.2023!'
+password = st.secrets["clave"]
 driver = 'ODBC Driver 18 for SQL Server' 
 
 
