@@ -22,8 +22,8 @@ import seaborn as sns
 # conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 ### llamo a la tabla de los estandar de secciones.
-estandar=pd.read_excel("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/Datos_estandar.xlsx")
-tabla_final_antiguo=pd.read_excel("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/tabla_final_antiguo_no_borrar.xlsx")
+estandar=pd.read_excel("Datos_estandar.xlsx")
+tabla_final_antiguo=pd.read_excel("tabla_final_antiguo_no_borrar.xlsx")
 
 
 # # Función para ejecutar consultas y devolver un DataFrame
@@ -36,9 +36,9 @@ tabla_final_antiguo=pd.read_excel("G:/Mi unidad/Camilo Olivares/Finanzas/Python/
 # df_base_inscritos = ejecutar_consulta("SELECT * FROM STG.UWVPLNI")
 
 # df_base.to_csv("df_base.csv")
-df_base=pd.read_csv("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/df_base.csv")
+df_base=pd.read_csv("df_base.csv")
 # df_base_inscritos.to_csv("df_base_inscritos.csv")
-df_base_inscritos=pd.read_csv("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/df_base_inscritos.csv")
+df_base_inscritos=pd.read_csv("df_base_inscritos.csv")
 
 df_base_inscritos["LLAVE"]=df_base_inscritos["UWVPLNI_TERM_CODE"]+df_base_inscritos["UWVPLNI_CRN"]
 
