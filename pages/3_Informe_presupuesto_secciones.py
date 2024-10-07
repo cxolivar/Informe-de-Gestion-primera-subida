@@ -1,32 +1,25 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 25 09:17:44 2024
-
-@author: Carmen
-"""
 import streamlit as st
 import pyodbc
 import pandas as pd
 import time
 import numpy as np
 import seaborn as sns
-import openpyxl
 
 
 
 #################### EXTRACCION DE LA BASE DE DATOS DESDE 2022 EN ADELANTE ###############################
 
 
-server = 'svr-uautonoma-prd.database.windows.net'
-database = 'db-uautonoma-prd'
-username = 'sa_uautonoma'
-password = st.secrets["clave"]
-driver = 'ODBC Driver 18 for SQL Server' 
+# server = 'svr-uautonoma-prd.database.windows.net'
+# database = 'db-uautonoma-prd'
+# username = 'sa_uautonoma'
+# password = 'Admin.prd.2023!'
+# driver = 'ODBC Driver 18 for SQL Server' 
 
 
 
-# Establecer la conexión
-conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+# # Establecer la conexión
+# conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 # seleccion de los programas, se descartan doctorados y magister.
 programas_presupuesto=pd.read_excel("programas_presupuesto.xlsx")
@@ -35,16 +28,15 @@ UF=pd.DataFrame({"PERIODO":["202210","202220","202310","202320","202410","202420
 
 
 
-# Función para ejecutar consultas y devolver un DataFrame
-@st.cache_data
-def ejecutar_consulta(query):
-    return pd.read_sql(query, conn)
+# # Función para ejecutar consultas y devolver un DataFrame
+# @st.cache_data
+# def ejecutar_consulta(query):
+#     return pd.read_sql(query, conn)
 
 #consulta a la base de datos
-df_base = ejecutar_consulta("SELECT * FROM STG.UWVPRES WHERE UWVPRES_TERM_CODE > 202153")
+df_base=pd.read_csv("df_base.csv")
 df_base=df_base.drop_duplicates()
-df_base_inscritos = ejecutar_consulta("SELECT * FROM STG.UWVPLNI")
-
+df_base_inscritos=pd.read_csv("df_base_inscritos.csv")
 
 
 
@@ -105,7 +97,7 @@ tabla_alumnos=pd.merge(total_inscritos,total_sesiones,on=["UWVPRES_TERM_CODE","U
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 
 
 
@@ -122,7 +114,7 @@ for periodo in periodos:
         monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )]["TOTAL"].sum()
         inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_x"].sum()
         secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==periodo]["VALOR UF"].reset_index(drop=True)[0] 
+        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0] 
 
            
         indicador_inscritos=monto/secciones/uf
@@ -143,7 +135,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Providencia"
 
 
@@ -160,7 +152,7 @@ for periodo in periodos:
         monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
         inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
         secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==periodo]["VALOR UF"].reset_index(drop=True)[0] 
+        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0] 
 
            
         indicador_inscritos=monto/secciones/uf
@@ -181,7 +173,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="San Miguel"
 
 
@@ -198,7 +190,7 @@ for periodo in periodos:
         monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
         inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
         secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==periodo]["VALOR UF"].reset_index(drop=True)[0] 
+        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0] 
 
            
         indicador_inscritos=monto/secciones/uf
@@ -218,7 +210,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Talca"
 
 
@@ -235,7 +227,7 @@ for periodo in periodos:
         monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
         inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
         secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==periodo]["VALOR UF"].reset_index(drop=True)[0] 
+        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0] 
 
            
         indicador_inscritos=monto/secciones/uf
@@ -256,7 +248,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Temuco"
 
 
@@ -273,7 +265,7 @@ for periodo in periodos:
         monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
         inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
         secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==periodo]["VALOR UF"].reset_index(drop=True)[0] 
+        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0] 
 
            
         indicador_inscritos=monto/secciones/uf
