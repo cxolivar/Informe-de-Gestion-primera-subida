@@ -7,7 +7,7 @@ import numpy as np
 import seaborn as sns
 
 
-
+st.set_page_config(layout="wide")  # configura el modo ancho
 #################### EXTRACCION DE LA BASE DE DATOS DESDE 2022 EN ADELANTE ###############################
 
 
