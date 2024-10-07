@@ -1,46 +1,45 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Sep  5 12:26:46 2024
-
-@author: Carmen
-"""
 import streamlit as st
 import pyodbc
 import pandas as pd
 import time
 import numpy as np
 import seaborn as sns
-import openpyxl
 
 
 
 #################### EXTRACCION DE LA BASE DE DATOS DESDE 2022 EN ADELANTE ###############################
 
 
-server = 'svr-uautonoma-prd.database.windows.net'
-database = 'db-uautonoma-prd'
-username = 'sa_uautonoma'
-password = st.secrets["clave"]
-driver = 'ODBC Driver 18 for SQL Server' 
+# server = 'svr-uautonoma-prd.database.windows.net'
+# database = 'db-uautonoma-prd'
+# username = 'sa_uautonoma'
+# password = 'Admin.prd.2023!'
+# driver = 'ODBC Driver 18 for SQL Server' 
 
 
 
-# Establecer la conexión
-conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+# # Establecer la conexión
+# conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 ### llamo a la tabla de los estandar de secciones.
-estandar=pd.read_excel("Datos_estandar.xlsx")
-tabla_final_antiguo=pd.read_excel("tabla_final_antiguo_no_borrar.xlsx")
+estandar=pd.read_excel("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/Datos_estandar.xlsx")
+tabla_final_antiguo=pd.read_excel("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/tabla_final_antiguo_no_borrar.xlsx")
 
 
-# Función para ejecutar consultas y devolver un DataFrame
-@st.cache_data
-def ejecutar_consulta(query):
-    return pd.read_sql(query, conn)
+# # Función para ejecutar consultas y devolver un DataFrame
+# @st.cache_data
+# def ejecutar_consulta(query):
+#     return pd.read_sql(query, conn)
 
-#consulta a la base de datos
-df_base = ejecutar_consulta("SELECT * FROM STG.UWVPRES WHERE UWVPRES_TERM_CODE > 202153")
-df_base_inscritos = ejecutar_consulta("SELECT * FROM STG.UWVPLNI")
+# #consulta a la base de datos
+# df_base = ejecutar_consulta("SELECT * FROM STG.UWVPRES WHERE UWVPRES_TERM_CODE > 202153")
+# df_base_inscritos = ejecutar_consulta("SELECT * FROM STG.UWVPLNI")
+
+# df_base.to_csv("df_base.csv")
+df_base=pd.read_csv("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/df_base.csv")
+# df_base_inscritos.to_csv("df_base_inscritos.csv")
+df_base_inscritos=pd.read_csv("G:/Mi unidad/Camilo Olivares/Finanzas/Python/Informe de Gestion estático/pages/df_base_inscritos.csv")
+
 df_base_inscritos["LLAVE"]=df_base_inscritos["UWVPLNI_TERM_CODE"]+df_base_inscritos["UWVPLNI_CRN"]
 
 
@@ -100,7 +99,7 @@ tabla_final["SECCIONES_ESTANDAR"]=np.ceil(tabla_final["TOTAL_INSCRITOS"]/tabla_f
 
 
 #########################################TABLA CORPORTATIVO############
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 tabla_total=pd.DataFrame({"TIPO_HORARIO":["Teoría","Laboratorio/taller","Campo Clínico","Terreno"]})
 for periodo in periodos:
 
@@ -165,7 +164,7 @@ tabla_corporativa_historica=tabla_total_2016.merge(tabla_total,on="TIPO_HORARIO"
 
 
 #########################################TABLA SEDES: PROVIDENCIA ############
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sedes="Providencia"
 
 
@@ -245,7 +244,7 @@ tabla_historica_providencia=tabla_total_2016.merge(tabla_total_providencia,on="T
 
 
 #########################################TABLA SEDES: SAN MIGUEL ############
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sedes="San Miguel"
 
 
@@ -315,7 +314,7 @@ tabla_historica_sanmiguel=tabla_total_2016.merge(tabla_total_sanmiguel,on="TIPO_
     
 
 #########################################TABLA SEDES: TALCA ############
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sedes="Talca"
 
 
@@ -382,7 +381,7 @@ tabla_historica_talca=tabla_total_2016.merge(tabla_total_talca,on="TIPO_HORARIO"
     
 
 #########################################TABLA SEDES: TEMUCO ############
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sedes="Temuco"
 
 
@@ -474,7 +473,7 @@ def main():
                  .format(precision=0, thousands=".", decimal=",")
                  .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
                  ,hide_index=True)
-    st.text("Estandar [2016-2021]: 60-25-1")
+    st.text("Estandar [2016-2021]: 45-25-1")
     st.text("Estandar [2022-2024]: 60-25-1")
 
 
@@ -513,4 +512,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
