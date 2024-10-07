@@ -23,9 +23,7 @@ st.write("# Informe de Gestión Universidad Autonoma! 👋")
 st.image("imagenes/UA.png")
 st.markdown(
     """
-1.- Normalizar UF 30 de marzo 
-2.- cuadro de doncencia antiguos 60-25-1
-3.- panel JCE regulares (JCE regulares es la cantifidad de horas en manos de planta regular)
- 4. UF alumno matriculado   
-"""
+<h1> Actualizacion 7 de octubre 2024 </h1>
+""",
+unsafe_allow_html=True
 )
