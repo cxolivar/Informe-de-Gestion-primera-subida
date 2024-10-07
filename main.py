@@ -8,11 +8,11 @@ Created on Mon Aug 12 19:10:08 2024
 
 import streamlit as st
 
-st.set_page_config(layout="wide")  # configura el modo ancho
 
 st.set_page_config(
     page_title="Hello",
     page_icon="👋",
+    layout="wide",
 )
 
 
