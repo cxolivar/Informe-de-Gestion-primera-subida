@@ -470,9 +470,9 @@ def main():
     
     #st.header('Resultados Corporativos')
     #st.dataframe(tabla_corporativa_historica.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-                 ,hide_index=True)
+     #            .format(precision=0, thousands=".", decimal=",")
+      #           .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+       #          ,hide_index=True)
     #st.text("Estandar [2016-2021]: 60-25-1")
     #st.text("Estandar [2022-2024]: 60-25-1")
 
@@ -483,28 +483,28 @@ def main():
 
     #st.header('Resultados Providencia')
     #st.dataframe(tabla_historica_providencia.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-                 ,hide_index=True)
+        #         .format(precision=0, thousands=".", decimal=",")
+         #        .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+          #       ,hide_index=True)
 
     #st.header('Resultados San Miguel')
     #st.dataframe(tabla_historica_sanmiguel.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-                 ,hide_index=True)
+           #      .format(precision=0, thousands=".", decimal=",")
+            #     .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+             #    ,hide_index=True)
 
     #st.header('Resultados Talca')
     #st.dataframe(tabla_historica_talca.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-                 ,hide_index=True)
+         #        .format(precision=0, thousands=".", decimal=",")
+          #       .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+           #      ,hide_index=True)
 
 
     #st.header('Resultados Temuco')
     #st.dataframe(tabla_historica_temuco.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-                 ,hide_index=True)
+            #     .format(precision=0, thousands=".", decimal=",")
+             #    .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+              #   ,hide_index=True)
 
 
 
