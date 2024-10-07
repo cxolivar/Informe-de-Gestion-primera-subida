@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 25 09:17:44 2024
-
-@author: Carmen
-"""
-
 
 import streamlit as st
 import pyodbc
@@ -12,23 +5,22 @@ import pandas as pd
 import time
 import numpy as np
 import seaborn as sns
-import openpyxl
 
 
 
 #################### EXTRACCION DE LA BASE DE DATOS DESDE 2022 EN ADELANTE ###############################
 
 
-server = 'svr-uautonoma-prd.database.windows.net'
-database = 'db-uautonoma-prd'
-username = 'sa_uautonoma'
-password = st.secrets["clave"]
-driver = 'ODBC Driver 18 for SQL Server' 
+# server = 'svr-uautonoma-prd.database.windows.net'
+# database = 'db-uautonoma-prd'
+# username = 'sa_uautonoma'
+# password = 'Admin.prd.2023!'
+# driver = 'ODBC Driver 18 for SQL Server' 
 
 
 
-# Establecer la conexión
-conn = pyodbc.connect(f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
+# # Establecer la conexión
+# conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
 
 # seleccion de los programas, se descartan doctorados y magister.
 programas_presupuesto=pd.read_excel("programas_presupuesto.xlsx")
@@ -36,15 +28,14 @@ programas_presupuesto=programas_presupuesto["UWVPRES_NOMBRE_PROGRAMA"].drop_dupl
 
 
 
-# Función para ejecutar consultas y devolver un DataFrame
-@st.cache_data
-def ejecutar_consulta(query):
-    return pd.read_sql(query, conn)
+# # Función para ejecutar consultas y devolver un DataFrame
+# @st.cache_data
+# def ejecutar_consulta(query):
+#     return pd.read_sql(query, conn)
 
 #consulta a la base de datos
-df_base = ejecutar_consulta("SELECT * FROM STG.UWVPRES WHERE UWVPRES_TERM_CODE > 202153")
+df_base=pd.read_csv("df_base.csv")
 df_base=df_base.drop_duplicates()
-
 
 
 
@@ -71,8 +62,7 @@ dist_horas=dist_horas.reset_index() #devuelte la tabla dinamica a un dataframe n
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_grado=dist_horas["UWVPRES_GRADO_DOCENTE"].drop_duplicates().to_list()
-periodos=["202210","202220","202310","202320","202410","202420"]
-
+periodos=[202210,202220,202310,202320,202410,202420]
 
 
 
@@ -101,7 +91,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_grado=dist_horas["UWVPRES_GRADO_DOCENTE"].drop_duplicates().to_list()
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Providencia"
 
 
@@ -132,7 +122,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_grado=dist_horas["UWVPRES_GRADO_DOCENTE"].drop_duplicates().to_list()
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="San Miguel"
 
 
@@ -162,7 +152,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_grado=dist_horas["UWVPRES_GRADO_DOCENTE"].drop_duplicates().to_list()
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Talca"
 
 
@@ -191,7 +181,7 @@ for periodo in periodos:
 
 #tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
 tipos_de_grado=dist_horas["UWVPRES_GRADO_DOCENTE"].drop_duplicates().to_list()
-periodos=["202210","202220","202310","202320","202410","202420"]
+periodos=[202210,202220,202310,202320,202410,202420]
 sede="Temuco"
 
 
