@@ -5,8 +5,8 @@ import seaborn as sns
 corporativo=pd.read_excel("corporativo.xlsx")
 providencia=pd.read_excel("providencia.xlsx")
 sanmiguel=pd.read_excel("sanmiguel.xlsx")
-# talca=pd.read_excel("talca.xlsx")
-# temuco=pd.read_excel("temuco.xlsx")
+talca=pd.read_excel("talca.xlsx")
+temuco=pd.read_excel("temuco.xlsx")
 
 ###############################STREAMLIT####################################################################################################
 
@@ -80,11 +80,11 @@ def main():
 
 
 
-    # st.header('Resultados Talca')
-    # st.dataframe(talca.style
-    #              .format(precision=0, thousands=".", decimal=",")
-    #              .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-    #              ,hide_index=True)
+    st.header('Resultados Talca')
+    st.dataframe(talca.style
+                  .format(precision=0, thousands=".", decimal=",")
+                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                  ,hide_index=True)
 
 
     # # st.header('Resultados Temuco')
@@ -94,11 +94,11 @@ def main():
     # #               ,hide_index=True)
 
 
-    # st.header('Resultados Temuco')
-    # st.dataframe(temuco.style
-    #              .format(precision=0, thousands=".", decimal=",")
-    #              .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-    #              ,hide_index=True)
+    st.header('Resultados Temuco')
+    st.dataframe(temuco.style
+                  .format(precision=0, thousands=".", decimal=",")
+                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                  ,hide_index=True)
 
 
 if __name__ == '__main__':
