@@ -28,7 +28,7 @@ def main():
     st.header('Resultados Corporativos')
     st.dataframe(corporativo.style
                  .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                  ,hide_index=True)
 
 
@@ -39,7 +39,7 @@ def main():
     st.header('Resultados Providencia')
     st.dataframe(providencia.style
                  .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                  ,hide_index=True)
 
 
@@ -49,7 +49,7 @@ def main():
     st.header('Resultados San Miguel')
     st.dataframe(sanmiguel.style
                  .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                  ,hide_index=True)    
     
 
@@ -61,7 +61,7 @@ def main():
     st.header('Resultados Talca')
     st.dataframe(talca.style
                   .format(precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                  .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                   ,hide_index=True)
 
 
@@ -71,7 +71,7 @@ def main():
     st.header('Resultados Temuco')
     st.dataframe(temuco.style
                   .format(precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                  .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                   ,hide_index=True)
 
 
