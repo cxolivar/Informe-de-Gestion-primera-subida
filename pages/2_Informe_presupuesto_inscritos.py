@@ -28,7 +28,8 @@ def main():
     st.header('Resultados Corporativos')
     st.dataframe(corporativo.style
                  .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
+                 .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1),
+                 precision=2, thousands=".", decimal=",")
                  ,hide_index=True)
 
 
