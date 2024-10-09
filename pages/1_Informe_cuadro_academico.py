@@ -19,7 +19,7 @@ colormap=sns.light_palette("green", as_cmap=True)
 def main():
     
     st.title('Planificación de Sesiones Históricas')
-    st.text("Resultado: Total sesiones segun estandar menos Total sesiones planificadas reales ")
+    st.text("Las siguientes cuadros muestran la diferancia entre el total de sesiones planificadas comparadas con las sesiones que se deberian haber planificadas segun el estandar de los cuadros de docencia ")
     
     
     # st.header('Resultados Corporativos')
