@@ -23,6 +23,7 @@ def main():
     st.text("con las sesiones que se deberian haber planificado según el estandar de los cuadros de docencia. ")
     st.text("Para esto se tomó la demanda estudiantil por periodo y se le aplicó el estandar definidos en los cuadros")
 
+    st.divider()
     st.text("En general el estandar se define con 60 estudiantes en secciones Teóricas, 23 estudiantes para Laboratorio")
     st.text("y 1 estudiante para secciones terreno / campo clínico.")
     st.text("Existen asignaturas que tienen composiciones especiales que tambien fueron consideradas.")
