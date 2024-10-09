@@ -1,313 +1,15 @@
-
 import streamlit as st
-import pyodbc
 import pandas as pd
-import time
-import numpy as np
 import seaborn as sns
 
-st.set_page_config(layout="wide")  # configura el modo ancho
-
-#################### EXTRACCION DE LA BASE DE DATOS DESDE 2022 EN ADELANTE ###############################
-
-
-# server = 'svr-uautonoma-prd.database.windows.net'
-# database = 'db-uautonoma-prd'
-# username = 'sa_uautonoma'
-# password = 'Admin.prd.2023!'
-# driver = 'ODBC Driver 18 for SQL Server' 
-
-
-
-# # Establecer la conexión
-# conn = pyodbc.connect(f'DRIVER={{SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}')
-
-# seleccion de los programas, se descartan doctorados y magister.
-programas_presupuesto=pd.read_excel("programas_presupuesto.xlsx")
-programas_presupuesto=programas_presupuesto["UWVPRES_NOMBRE_PROGRAMA"].drop_duplicates().to_list()
-UF=pd.DataFrame({"PERIODO":["202210","202220","202310","202320","202410","202420"],"VALOR UF":[31721,31721,35575,35575,37093,37093]})
-
-
-# # Función para ejecutar consultas y devolver un DataFrame
-# @st.cache_data
-# def ejecutar_consulta(query):
-#     return pd.read_sql(query, conn)
-
-#consulta a la base de datos
-df_base=pd.read_csv("df_base.csv")
-df_base=df_base.drop_duplicates()
-df_base_inscritos=pd.read_csv("df_base_inscritos.csv")
-
-
-
-
-
-
-################# BASE DE PRESUPUESTO################################
-df_base_ppto=df_base[["UWVPRES_TERM_CODE","UWVPRES_CRN","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_TIPO_CURSO","UWVPRES_CAMPUS","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_HORAS","UWVPRES_VALOR","UWVPRES_SEMANAS"]]
-df_base_ppto["TOTAL"]=df_base_ppto["UWVPRES_HORAS"]*df_base_ppto["UWVPRES_VALOR"]*df_base_ppto["UWVPRES_SEMANAS"]
-#considero solo los programas del presupuesto:
-df_base_ppto=df_base_ppto[df_base_ppto["UWVPRES_NOMBRE_PROGRAMA"].isin(programas_presupuesto)]
-
-
-
-presupuesto=df_base_ppto.pivot_table(values=["TOTAL"],
-                    index=["UWVPRES_TERM_CODE","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_TIPO_CURSO","UWVPRES_CAMPUS"],
-                    aggfunc="sum")
-presupuesto=presupuesto.reset_index() #devuelte la tabla dinamica a un dataframe normal
-
-
-
-####################BASE DE TOTAL SECCIONES###############################
-
-df_base_inscritos["LLAVE"]=df_base_inscritos["UWVPLNI_TERM_CODE"]+df_base_inscritos["UWVPLNI_CRN"]
-
-
-df_principal=df_base[["UWVPRES_TERM_CODE","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_AREA_PRIORITY","UWVPRES_CRN","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_CAMPUS","UWVPRES_TIPO_CURSO"]]
-df_principal["INSCRITOS"]=0
-df_principal["LLAVE"]=df_principal["UWVPRES_TERM_CODE"]+df_principal["UWVPRES_CRN"]
-
-# acá se colocan el numero de inscritos y es la base que mantienen todos los nrc
-df_principal=pd.merge(df_principal,df_base_inscritos,on="LLAVE")
-df_principal=df_principal[["UWVPRES_TERM_CODE","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_AREA_PRIORITY","UWVPRES_CRN","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_CAMPUS","UWVPRES_TIPO_CURSO","UWVPLNI_INSCRITOS"]]
-df_principal=df_principal.drop_duplicates(keep="first")
-
-
-# acá se hace la suma de inscritos y total secciones
-total_inscritos=pd.pivot_table(df_principal,
-                                      values="UWVPLNI_INSCRITOS",
-                                      index=["UWVPRES_TERM_CODE","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_AREA_PRIORITY","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_CAMPUS","UWVPRES_TIPO_CURSO"], 
-                                      aggfunc="sum")
-total_inscritos=total_inscritos.reset_index()  #devuelte la tabla dinamica a un dataframe normal
-
-
-total_sesiones=pd.pivot_table(df_principal,
-                                      values="UWVPLNI_INSCRITOS",
-                                      index=["UWVPRES_TERM_CODE","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_AREA_PRIORITY","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_CAMPUS","UWVPRES_TIPO_CURSO"], 
-                                      aggfunc="count")
-total_sesiones=total_sesiones.reset_index() #devuelte la tabla dinamica a un dataframe normal
-tabla_alumnos=pd.merge(total_inscritos,total_sesiones,on=["UWVPRES_TERM_CODE","UWVPRES_PROGRAMA","UWVPRES_NOMBRE_PROGRAMA","UWVPRES_AREA_PRIORITY","UWVPRES_SUBJ_CODE","UWVPRES_CRSE_NUMB","UWVPRES_NOMBRE_CURSO","UWVPRES_CAMPUS","UWVPRES_TIPO_CURSO"])
-
-#tabla_alumnos.to_excel("tabla_alumnos.xlsx")
-#presupuesto.to_excel("presupuesto.xlsx")
-
-
-
-################33 analisis corporativo#############
-
-#tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
-tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=[202210,202220,202310,202320,202410,202420]
-
-
-
-
-tabla_corporativa_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-
-for periodo in periodos:
-    tabla_aux_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-    lista_inscritos=[]
-    for tipo in tabla_aux_inscritos["TIPO_HORARIO"]:
-        
-        #periodo="202410"
-        
-        monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )]["TOTAL"].sum()
-        inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_x"].sum()
-        secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0]
-        
-        
-        
-        indicador_inscritos=monto/inscritos/uf
-        
-        lista_inscritos.append(indicador_inscritos)
-        
-
-    
-    tabla_aux_inscritos[f"{periodo}"]=pd.DataFrame(lista_inscritos)
-    
-    
-    
-    tabla_corporativa_inscritos=pd.merge(tabla_corporativa_inscritos,tabla_aux_inscritos,on="TIPO_HORARIO",how="left")
-
-
-
-################33 ANALISIS PROVIDENCIA#############
-
-#tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
-tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=[202210,202220,202310,202320,202410,202420]
-sede="Providencia"
-
-
-
-tabla_providencia_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-
-for periodo in periodos:
-    tabla_aux_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-    lista_inscritos=[]
-    for tipo in tabla_aux_inscritos["TIPO_HORARIO"]:
-        
-        #periodo="202410"
-        
-        monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
-        inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
-        secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0]
-        
-        
-        
-        indicador_inscritos=monto/inscritos/uf
-        
-        lista_inscritos.append(indicador_inscritos)
-        
-
-    
-    tabla_aux_inscritos[f"{periodo}"]=pd.DataFrame(lista_inscritos)
-    
-    
-    
-    tabla_providencia_inscritos=pd.merge(tabla_providencia_inscritos,tabla_aux_inscritos,on="TIPO_HORARIO",how="left")
-
-
-
-################33 ANALISIS SANMIGUEL#############
-
-#tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
-tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=[202210,202220,202310,202320,202410,202420]
-sede="San Miguel"
-
-
-
-tabla_sanmiguel_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-
-for periodo in periodos:
-    tabla_aux_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-    lista_inscritos=[]
-    for tipo in tabla_aux_inscritos["TIPO_HORARIO"]:
-        
-        #periodo="202410"
-        
-        monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
-        inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
-        secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0]
-        
-        
-        
-        indicador_inscritos=monto/inscritos/uf
-        
-        lista_inscritos.append(indicador_inscritos)
-        
-
-    
-    tabla_aux_inscritos[f"{periodo}"]=pd.DataFrame(lista_inscritos)
-    
-    
-    
-    tabla_sanmiguel_inscritos=pd.merge(tabla_sanmiguel_inscritos,tabla_aux_inscritos,on="TIPO_HORARIO",how="left")
-
-
-################33 ANALISIS TALCA#############
-
-#tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
-tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=[202210,202220,202310,202320,202410,202420]
-sede="Talca"
-
-
-
-tabla_talca_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-
-for periodo in periodos:
-    tabla_aux_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-    lista_inscritos=[]
-    for tipo in tabla_aux_inscritos["TIPO_HORARIO"]:
-        
-        #periodo="202410"
-        
-        monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
-        inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
-        secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0]
-        
-        
-        
-        indicador_inscritos=monto/inscritos/uf
-        
-        lista_inscritos.append(indicador_inscritos)
-        
-
-    
-    tabla_aux_inscritos[f"{periodo}"]=pd.DataFrame(lista_inscritos)
-    
-    
-    
-    tabla_talca_inscritos=pd.merge(tabla_talca_inscritos,tabla_aux_inscritos,on="TIPO_HORARIO",how="left")
-
-
-
-################33 ANALISIS TEMUCO#############
-
-#tipos_de_horario=presupuesto["UWVPRES_TIPO_CURSO"].drop_duplicates().to_list()
-tipos_de_horario=["Sup de practica y titulación","Laboratorio/taller","Simulación de Alta","Teoría","Simulación de Baja","Ayudantía en sala","Aprendizaje Mediado"]
-periodos=[202210,202220,202310,202320,202410,202420]
-sede="Temuco"
-
-
-
-tabla_temuco_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-
-for periodo in periodos:
-    tabla_aux_inscritos=pd.DataFrame({"TIPO_HORARIO":tipos_de_horario})
-    lista_inscritos=[]
-    for tipo in tabla_aux_inscritos["TIPO_HORARIO"]:
-        
-        #periodo="202410"
-        
-        monto=presupuesto[(presupuesto["UWVPRES_TERM_CODE"]==periodo )&(presupuesto["UWVPRES_TIPO_CURSO"]==tipo )&(presupuesto["UWVPRES_CAMPUS"]==sede )]["TOTAL"].sum()
-        inscritos=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)&(tabla_alumnos["UWVPRES_CAMPUS"]==sede)]["UWVPLNI_INSCRITOS_x"].sum()
-        secciones=tabla_alumnos[(tabla_alumnos["UWVPRES_TERM_CODE"]==periodo)&(tabla_alumnos["UWVPRES_TIPO_CURSO"]==tipo)]["UWVPLNI_INSCRITOS_y"].sum()
-        uf=UF[UF["PERIODO"]==str(periodo)]["VALOR UF"].reset_index(drop=True)[0]
-        
-        
-        
-        indicador_inscritos=monto/inscritos/uf
-        
-        lista_inscritos.append(indicador_inscritos)
-        
-
-    
-    tabla_aux_inscritos[f"{periodo}"]=pd.DataFrame(lista_inscritos)
-    
-    
-    
-    tabla_temuco_inscritos=pd.merge(tabla_temuco_inscritos,tabla_aux_inscritos,on="TIPO_HORARIO",how="left")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+corporativo=pd.read_excel("corporativo_2.xlsx")
+providencia=pd.read_excel("providencia_2.xlsx")
+sanmiguel=pd.read_excel("sanmiguel_2.xlsx")
+talca=pd.read_excel("talca_2.xlsx")
+temuco=pd.read_excel("temuco_2.xlsx")
 
 ###############################STREAMLIT####################################################################################################
+
 
 
 colormap=sns.light_palette("green", as_cmap=True)
@@ -316,90 +18,87 @@ colormap=sns.light_palette("green", as_cmap=True)
 # Ejemplo de uso en Streamlit
 def main():
     
-    st.title('Costo inscritos por Tipo de Horario')
-    st.text("Resultado: Total Presupuesto divido la cantidad de inscritos (valores en UF considerando el valor del 31 de marzo)")
+    st.title('Planificación de Sesiones Históricas')
+    st.text("Resultado: Total sesiones segun estandar menos Total sesiones planificadas reales ")
     
     
+    # st.header('Resultados Corporativos')
+    # st.dataframe(corporativo.style
+    #               .format(precision=0, thousands=".", decimal=",")
+    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+    #               ,hide_index=True)
+
+
+
     st.header('Resultados Corporativos')
-    st.dataframe(tabla_corporativa_inscritos.style
-                  .format({"202210":'{:,.2f}',
-                           "202220":'{:,.2f}',
-                           "202310":'{:,.2f}',
-                           "202320":'{:,.2f}',
-                           "202410":'{:,.2f}',
-                           "202420":'{:,.2f}',
-                          
-                          },
-                          precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["202210","202220","202310","202320","202410","202420"],axis=1)
-                  ,hide_index=True)
+    st.dataframe(corporativo.style
+                 .format(precision=0, thousands=".", decimal=",")
+                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 ,hide_index=True)
+
+    st.text("Estandar  60-25-1")
 
 
-
+    # st.header('Resultados Providencia')
+    # st.dataframe(tabla_sede_periodo(tabla_final,"Providencia").style
+    #               .format(precision=0, thousands=".", decimal=",")
+    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+    #               ,hide_index=True)
 
 
 
 
     st.header('Resultados Providencia')
-    st.dataframe(tabla_providencia_inscritos.style
-                  .format({"202210":'{:,.2f}',
-                           "202220":'{:,.2f}',
-                           "202310":'{:,.2f}',
-                           "202320":'{:,.2f}',
-                           "202410":'{:,.2f}',
-                           "202420":'{:,.2f}',
-                          
-                          },
-                          precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["202210","202220","202310","202320","202410","202420"],axis=1)
-                  ,hide_index=True)
+    st.dataframe(providencia.style
+                 .format(precision=0, thousands=".", decimal=",")
+                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 ,hide_index=True)
 
+
+
+
+    # st.header('Resultados San Miguel')
+    # st.dataframe(tabla_sede_periodo(tabla_final,"San Miguel").style
+    #               .format(precision=0, thousands=".", decimal=",")
+    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+    #               ,hide_index=True)
+    
     st.header('Resultados San Miguel')
-    st.dataframe(tabla_sanmiguel_inscritos.style
-                  .format({"202210":'{:,.2f}',
-                           "202220":'{:,.2f}',
-                           "202310":'{:,.2f}',
-                           "202320":'{:,.2f}',
-                           "202410":'{:,.2f}',
-                           "202420":'{:,.2f}',
-                          
-                          },
-                          precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["202210","202220","202310","202320","202410","202420"],axis=1)
-                  ,hide_index=True)
+    st.dataframe(sanmiguel.style
+                 .format(precision=0, thousands=".", decimal=",")
+                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                 ,hide_index=True)    
+    
+
+    # st.header('Resultados Talca')
+    # st.dataframe(tabla_sede_periodo(tabla_final,"Talca").style
+    #               .format(precision=0, thousands=".", decimal=",")
+    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+    #               ,hide_index=True)
+
+
+
+
 
     st.header('Resultados Talca')
-    st.dataframe(tabla_talca_inscritos.style
-                  .format({"202210":'{:,.2f}',
-                           "202220":'{:,.2f}',
-                           "202310":'{:,.2f}',
-                           "202320":'{:,.2f}',
-                           "202410":'{:,.2f}',
-                           "202420":'{:,.2f}',
-                          
-                          },
-                          precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["202210","202220","202310","202320","202410","202420"],axis=1)
+    st.dataframe(talca.style
+                  .format(precision=0, thousands=".", decimal=",")
+                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
                   ,hide_index=True)
+
+
+    # # st.header('Resultados Temuco')
+    # # st.dataframe(tabla_sede_periodo(tabla_final,"Temuco").style
+    # #               .format(precision=0, thousands=".", decimal=",")
+    # #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
+    # #               ,hide_index=True)
 
 
     st.header('Resultados Temuco')
-    st.dataframe(tabla_temuco_inscritos.style
-                  .format({"202210":'{:,.2f}',
-                           "202220":'{:,.2f}',
-                           "202310":'{:,.2f}',
-                           "202320":'{:,.2f}',
-                           "202410":'{:,.2f}',
-                           "202420":'{:,.2f}',
-                          
-                          },
-                          precision=0, thousands=".", decimal=",")                          
-                  .background_gradient(cmap=colormap,subset=["202210","202220","202310","202320","202410","202420"],axis=1)
+    st.dataframe(temuco.style
+                  .format(precision=0, thousands=".", decimal=",")
+                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
                   ,hide_index=True)
-
-
-    st.dataframe(UF)
-
 
 
 if __name__ == '__main__':
