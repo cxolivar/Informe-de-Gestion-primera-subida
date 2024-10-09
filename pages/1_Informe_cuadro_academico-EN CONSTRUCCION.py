@@ -94,7 +94,9 @@ tabla_final=tabla_final.drop_duplicates()
 #tabla_final.to_excel("tabla_final.xlsx")
 
 tabla_final["SECCIONES_ESTANDAR"]=np.ceil(tabla_final["TOTAL_INSCRITOS"]/tabla_final["Estandar"])
-tabla_final["AÑO"]=tabla_final["PERIODO"].str[:4]
+tabla_final["AÑO"]=round(tabla_final["PERIODO"]/100,0)
+
+
 
 ##############################
 
