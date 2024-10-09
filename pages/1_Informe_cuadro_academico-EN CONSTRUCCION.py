@@ -211,7 +211,7 @@ def tabla_corporativa_año(tabla_final):
         tabla_total=pd.merge(tabla_total, aux,on="TIPO_HORARIO",how="left")
     
     
-    periodos=[2016,2017,2018,2019,2020,2021]
+    periodos=["2016","2017","2018","2019","2020","2021"]
     tabla_total_2016=pd.DataFrame({"TIPO_HORARIO":["Teoría","Laboratorio/taller","Campo Clínico","Terreno"]})
     for periodo in periodos:
     
