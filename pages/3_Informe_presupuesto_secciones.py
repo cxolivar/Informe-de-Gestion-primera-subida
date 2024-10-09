@@ -20,7 +20,7 @@ def main():
     
     st.title('Costo por secciones (UF)')
     st.text("En las siguientas tablas se muestra el resultado del total prespuesto dividido por la cantidad de secciones abiertas")
-     st.text("El valor de la UF considerada corresponde a la del 31 de marzo")
+    st.text("El valor de la UF considerada corresponde a la del 31 de marzo")
     st.divider()
     
 
