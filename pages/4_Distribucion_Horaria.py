@@ -19,7 +19,8 @@ colormap=sns.light_palette("green", as_cmap=True)
 def main():
     
     st.title('Distribución Horaria')
-    
+    st.text("En las siguientas tablas se muestra la distribución de horas por tipo de horario.")
+    st.divider()
     
 
 
