@@ -18,15 +18,10 @@ colormap=sns.light_palette("green", as_cmap=True)
 # Ejemplo de uso en Streamlit
 def main():
     
-    st.title('Planificación de Sesiones Históricas')
-    st.text("Resultado: Total sesiones segun estandar menos Total sesiones planificadas reales ")
+    st.title('Costo por inscritos (UF)')
     
     
-    # st.header('Resultados Corporativos')
-    # st.dataframe(corporativo.style
-    #               .format(precision=0, thousands=".", decimal=",")
-    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-    #               ,hide_index=True)
+
 
 
 
@@ -36,14 +31,7 @@ def main():
                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
                  ,hide_index=True)
 
-    st.text("Estandar  60-25-1")
 
-
-    # st.header('Resultados Providencia')
-    # st.dataframe(tabla_sede_periodo(tabla_final,"Providencia").style
-    #               .format(precision=0, thousands=".", decimal=",")
-    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-    #               ,hide_index=True)
 
 
 
@@ -57,11 +45,6 @@ def main():
 
 
 
-    # st.header('Resultados San Miguel')
-    # st.dataframe(tabla_sede_periodo(tabla_final,"San Miguel").style
-    #               .format(precision=0, thousands=".", decimal=",")
-    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-    #               ,hide_index=True)
     
     st.header('Resultados San Miguel')
     st.dataframe(sanmiguel.style
@@ -70,11 +53,6 @@ def main():
                  ,hide_index=True)    
     
 
-    # st.header('Resultados Talca')
-    # st.dataframe(tabla_sede_periodo(tabla_final,"Talca").style
-    #               .format(precision=0, thousands=".", decimal=",")
-    #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-    #               ,hide_index=True)
 
 
 
@@ -87,11 +65,7 @@ def main():
                   ,hide_index=True)
 
 
-    # # st.header('Resultados Temuco')
-    # # st.dataframe(tabla_sede_periodo(tabla_final,"Temuco").style
-    # #               .format(precision=0, thousands=".", decimal=",")
-    # #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
-    # #               ,hide_index=True)
+
 
 
     st.header('Resultados Temuco')
