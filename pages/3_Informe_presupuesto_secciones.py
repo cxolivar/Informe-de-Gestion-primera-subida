@@ -19,7 +19,8 @@ colormap=sns.light_palette("green", as_cmap=True)
 def main():
     
     st.title('Costo por secciones (UF)')
-    
+    st.text("En las siguientas tablas se muestra el resultado del total prespuesto dividido por la cantidad de secciones abiertas")
+    st.divider()
     
 
 
