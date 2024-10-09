@@ -18,9 +18,10 @@ colormap=sns.light_palette("green", as_cmap=True)
 # Ejemplo de uso en Streamlit
 def main():
     
-    st.title('Distribución Horaria')
+    st.title('Distribución Horaria JCE')
     
-    
+    st.text("En las siguientas tablas se muestra la distribución de horas por tipo de horario en manos de planta regular.")
+    st.divider()
 
 
 
