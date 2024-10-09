@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 
-corporativo=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion estático\pages\corporativo.xlsx")
-providencia=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion estático\pages\providencia.xlsx")
-sanmiguel=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion estático\pages\sanmiguel.xlsx")
-# talca=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion estático\pages\talca.xlsx")
-# temuco=pd.read_excel("G:\Mi unidad\Camilo Olivares\Finanzas\Python\Informe de Gestion estático\pages\temuco.xlsx")
+corporativo=pd.read_excel("corporativo.xlsx")
+providencia=pd.read_excel("providencia.xlsx")
+sanmiguel=pd.read_excel("sanmiguel.xlsx")
+# talca=pd.read_excel("talca.xlsx")
+# temuco=pd.read_excel("temuco.xlsx")
 
 ###############################STREAMLIT####################################################################################################
 
