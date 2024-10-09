@@ -19,9 +19,9 @@ colormap=sns.light_palette("green", as_cmap=True)
 def main():
     
     st.title('Planificación de Sesiones Históricas')
-    st.text("Las siguientes tablas muestran la diferancia entre el total de sesiones planificadas comparadas") 
-    st.text("con las sesiones que se deberian haber planificadas segun el estandar de los cuadros de docencia. ")
-    st.text("Para esto se tomó la demanda estudiantil por periodo y se le aplicó el el estandar por CD")
+    st.text("Las siguientes tablas muestran la diferancia entre el total de sesiones planificadas ") 
+    st.text("con las sesiones que se deberian haber planificado según el estandar de los cuadros de docencia. ")
+    st.text("Para esto se tomó la demanda estudiantil por periodo y se le aplicó el estandar definidos en los cuadros")
     
     
     # st.header('Resultados Corporativos')
