@@ -99,7 +99,7 @@ def main():
 
     col1,col2= st.columns(2)
 
-     with col1:
+    with col1:
         st.header('Resultados Corporativos hola')
         st.dataframe(corporativo.style
                      .format(precision=0, thousands=".", decimal=",")
