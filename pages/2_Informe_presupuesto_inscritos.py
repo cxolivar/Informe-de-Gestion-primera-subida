@@ -97,7 +97,7 @@ def main():
             st.session_state.mostrar_contenido = False
         
         # Crear un botón
-        if st.button('Mostrar graficos'):
+        if st.button('Mostrar graficos',key="corporativo"):
             st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
         
         # Mostrar el contenido si el estado es True
@@ -124,7 +124,7 @@ def main():
             st.session_state.mostrar_contenido2 = False
         
         # Crear un botón
-        if st.button('Mostrar graficos'):
+        if st.button('Mostrar graficos',key="providencia"):
             st.session_state.mostrar_contenido2 = not st.session_state.mostrar_contenido2
         
         # Mostrar el contenido si el estado es True
@@ -149,7 +149,7 @@ def main():
             st.session_state.mostrar_contenido3 = False
         
         # Crear un botón
-        if st.button('Mostrar graficos'):
+        if st.button('Mostrar graficos',key="sanmiguel"):
             st.session_state.mostrar_contenido3 = not st.session_state.mostrar_contenido3
         
         # Mostrar el contenido si el estado es True
@@ -174,7 +174,7 @@ def main():
             st.session_state.mostrar_contenido4 = False
         
         # Crear un botón
-        if st.button('Mostrar graficos'):
+        if st.button('Mostrar graficos',key="talca"):
             st.session_state.mostrar_contenido4 = not st.session_state.mostrar_contenido4
         
         # Mostrar el contenido si el estado es True
@@ -201,7 +201,7 @@ def main():
             st.session_state.mostrar_contenido5 = False
         
         # Crear un botón
-        if st.button('Mostrar graficos'):
+        if st.button('Mostrar graficos',key="tamuco"):
             st.session_state.mostrar_contenido5 = not st.session_state.mostrar_contenido5
         
         # Mostrar el contenido si el estado es True
