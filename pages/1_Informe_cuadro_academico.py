@@ -78,7 +78,7 @@ colormap=sns.light_palette("green", as_cmap=True)
 
 # Ejemplo de uso en Streamlit
 def main():
-    
+    st.set_page_config(layout="wide")
     st.title('Planificación de Sesiones Históricas')
     st.text("Las siguientes tablas muestran la diferencia entre el total de sesiones planificadas ") 
     st.text("con las sesiones que se deberian haber planificado según el estandar de los cuadros de docencia. ")
