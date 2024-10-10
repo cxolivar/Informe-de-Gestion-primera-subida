@@ -15,8 +15,7 @@ def grafico_cascada(archivo,tipo):
     tipo_horario=tipo
     indice=corporativo[corporativo["TIPO_HORARIO"]==tipo_horario].index[0]    
     x=list(corporativo.columns)
-    x_primer=x.pop(0)
-    
+    x_primer=x.pop(0)    
     y=corporativo.iloc[indice]
     y=y.to_list()
     y_primer=y.pop(0)    
@@ -51,7 +50,6 @@ def grafico_cascada(archivo,tipo):
             range=[miny*0.9, maxy*1.1]  # Ajusta el rango mínimo y máximo
         )
     )
-    
     st.plotly_chart(fig, use_container_width=True)
 
 
