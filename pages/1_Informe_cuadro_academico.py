@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import plotly.graph_objects as go
+
 
 corporativo=pd.read_excel("corporativo.xlsx")
 providencia=pd.read_excel("providencia.xlsx")
