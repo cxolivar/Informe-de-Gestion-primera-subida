@@ -187,11 +187,11 @@ def main():
 
 
     with col1:
-    st.header('Resultados Temuco')
-    st.dataframe(temuco.style
-                  .format(precision=2, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
-                  ,hide_index=True)
+        st.header('Resultados Temuco')
+        st.dataframe(temuco.style
+                      .format(precision=2, thousands=".", decimal=",")
+                      .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
+                      ,hide_index=True)
 
     with col2:
                 
