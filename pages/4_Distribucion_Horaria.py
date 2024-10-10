@@ -14,7 +14,7 @@ def grafico_cascada(archivo,tipo):
 
     corporativo=archivo
     tipo_horario=tipo
-    indice=corporativo[corporativo["TIPO_HORARIO"]==tipo_horario].index[0]
+    indice=corporativo[corporativo["TIPO_GRADO"]==tipo_horario].index[0]
     
     x=list(corporativo.columns)
     x_primer=x.pop(0)
