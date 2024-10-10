@@ -102,7 +102,7 @@ def main():
     col1,col2= st.columns(2)
 
     with col1:
-        st.header('Resultados Corporativos hola')
+        st.header('Resultados Corporativos')
         st.dataframe(corporativo.style
                      .format(precision=0, thousands=".", decimal=",")
                      .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
@@ -133,13 +133,27 @@ def main():
 
 
 
+    col1,col2= st.columns(2)
 
-    st.header('Resultados Providencia')
-    st.dataframe(providencia.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-                 ,hide_index=True)
+    with col1:
+        st.header('Resultados Providencia')
+        st.dataframe(providencia.style
+                     .format(precision=0, thousands=".", decimal=",")
+                     .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                     ,hide_index=True)
 
+    with col2:
+        # Crear un estado inicial
+        if 'mostrar_contenido' not in st.session_state:
+            st.session_state.mostrar_contenido = False
+        
+        # Crear un botón
+        if st.button('Mostrar graficos'):
+            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+        
+        # Mostrar el contenido si el estado es True
+        if st.session_state.mostrar_contenido:
+            grafico_cascada(providencia,"Teoría") 
 
 
 
