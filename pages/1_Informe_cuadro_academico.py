@@ -174,15 +174,15 @@ def main():
                      ,hide_index=True)    
     with col2:
         # Crear un estado inicial
-        if 'mostrar_contenido' not in st.session_state:
-            st.session_state.mostrar_contenido = False
+        if 'mostrar_contenido3' not in st.session_state:
+            st.session_state.mostrar_contenido3 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="sanmiguel"):
-            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+            st.session_state.mostrar_contenido3 = not st.session_state.mostrar_contenido3
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido:
+        if st.session_state.mostrar_contenido3:
             grafico_cascada(sanmiguel,"Teoría") 
     
 
@@ -205,15 +205,15 @@ def main():
 
     with col2:
         # Crear un estado inicial
-        if 'mostrar_contenido' not in st.session_state:
-            st.session_state.mostrar_contenido = False
+        if 'mostrar_contenido4' not in st.session_state:
+            st.session_state.mostrar_contenido4 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="talca"):
-            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+            st.session_state.mostrar_contenido4 = not st.session_state.mostrar_contenido4
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido:
+        if st.session_state.mostrar_contenido4:
             grafico_cascada(talca,"Teoría") 
 
 
@@ -234,15 +234,15 @@ def main():
 
     with col2:
         # Crear un estado inicial
-        if 'mostrar_contenido' not in st.session_state:
-            st.session_state.mostrar_contenido = False
+        if 'mostrar_contenido5' not in st.session_state:
+            st.session_state.mostrar_contenido5 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="temuco"):
-            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+            st.session_state.mostrar_contenido5 = not st.session_state.mostrar_contenido5
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido:
+        if st.session_state.mostrar_contenido5:
             grafico_cascada(temuco,"Teoría") 
 
 
