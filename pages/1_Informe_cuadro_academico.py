@@ -144,15 +144,15 @@ def main():
 
     with col2:
         # Crear un estado inicial
-        if 'mostrar_contenido' not in st.session_state:
-            st.session_state.mostrar_contenido = False
+        if 'mostrar_contenido2' not in st.session_state:
+            st.session_state.mostrar_contenido2 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="providencia"):
-            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+            st.session_state.mostrar_contenido2 = not st.session_state.mostrar_contenido2
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido:
+        if st.session_state.mostrar_contenido2:
             grafico_cascada(providencia,"Teoría") 
 
 
