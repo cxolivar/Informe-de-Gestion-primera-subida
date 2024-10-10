@@ -162,12 +162,28 @@ def main():
     #               .format(precision=0, thousands=".", decimal=",")
     #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
     #               ,hide_index=True)
-    
-    st.header('Resultados San Miguel')
-    st.dataframe(sanmiguel.style
-                 .format(precision=0, thousands=".", decimal=",")
-                 .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-                 ,hide_index=True)    
+
+
+    col1,col2= st.columns(2)
+
+    with col1:
+        st.header('Resultados San Miguel')
+        st.dataframe(sanmiguel.style
+                     .format(precision=0, thousands=".", decimal=",")
+                     .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                     ,hide_index=True)    
+    with col2:
+        # Crear un estado inicial
+        if 'mostrar_contenido' not in st.session_state:
+            st.session_state.mostrar_contenido = False
+        
+        # Crear un botón
+        if st.button('Mostrar graficos'):
+            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+        
+        # Mostrar el contenido si el estado es True
+        if st.session_state.mostrar_contenido:
+            grafico_cascada(sanmiguel,"Teoría") 
     
 
     # st.header('Resultados Talca')
@@ -178,13 +194,27 @@ def main():
 
 
 
+    col1,col2= st.columns(2)
 
+    with col1:
+        st.header('Resultados Talca')
+        st.dataframe(talca.style
+                      .format(precision=0, thousands=".", decimal=",")
+                      .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                      ,hide_index=True)
 
-    st.header('Resultados Talca')
-    st.dataframe(talca.style
-                  .format(precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-                  ,hide_index=True)
+    with col2:
+        # Crear un estado inicial
+        if 'mostrar_contenido' not in st.session_state:
+            st.session_state.mostrar_contenido = False
+        
+        # Crear un botón
+        if st.button('Mostrar graficos'):
+            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+        
+        # Mostrar el contenido si el estado es True
+        if st.session_state.mostrar_contenido:
+            grafico_cascada(talca,"Teoría") 
 
 
     # # st.header('Resultados Temuco')
@@ -193,12 +223,27 @@ def main():
     # #               .background_gradient(cmap=colormap,subset=["201610","201620","201710","201720","201810","201820","201910","201920","202010","202020","202110","202120","202210","202220","202310","202320","202410","202420"],axis=1)
     # #               ,hide_index=True)
 
+    col1,col2= st.columns(2)
 
-    st.header('Resultados Temuco')
-    st.dataframe(temuco.style
-                  .format(precision=0, thousands=".", decimal=",")
-                  .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
-                  ,hide_index=True)
+    with col1:
+        st.header('Resultados Temuco')
+        st.dataframe(temuco.style
+                      .format(precision=0, thousands=".", decimal=",")
+                      .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
+                      ,hide_index=True)
+
+    with col2:
+        # Crear un estado inicial
+        if 'mostrar_contenido' not in st.session_state:
+            st.session_state.mostrar_contenido = False
+        
+        # Crear un botón
+        if st.button('Mostrar graficos'):
+            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+        
+        # Mostrar el contenido si el estado es True
+        if st.session_state.mostrar_contenido:
+            grafico_cascada(temuco,"Teoría") 
 
 
 if __name__ == '__main__':
