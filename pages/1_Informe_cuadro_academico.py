@@ -123,7 +123,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido:
-            grafico_cascada(corporativo,opciones) 
+            grafico_cascada(corporativo,tipo) 
              
 
 
