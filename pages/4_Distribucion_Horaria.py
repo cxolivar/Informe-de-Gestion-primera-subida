@@ -125,7 +125,7 @@ def main():
         tipo = st.selectbox('', opciones,key="sel17")
                 
         if 'mostrar_contenido17' not in st.session_state:
-            st.session_state.mostrar_contenido2 = False
+            st.session_state.mostrar_contenido17 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="providencia"):
