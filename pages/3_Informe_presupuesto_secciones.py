@@ -92,7 +92,7 @@ def main():
                      .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                      ,hide_index=True)
     with col2:
-        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
         tipo = st.selectbox('', opciones,key="sel11")
                 
         if 'mostrar_contenido11' not in st.session_state:
@@ -121,7 +121,7 @@ def main():
                      ,hide_index=True)
 
     with col2:
-        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
         tipo = st.selectbox('', opciones,key="sel12")
                 
         if 'mostrar_contenido12' not in st.session_state:
@@ -148,7 +148,7 @@ def main():
                      ,hide_index=True)    
     
     with col2:
-        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
         tipo = st.selectbox('', opciones,key="sel13")
                 
         if 'mostrar_contenido13' not in st.session_state:
@@ -175,7 +175,7 @@ def main():
                       ,hide_index=True)
 
     with col2:
-        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
         tipo = st.selectbox('', opciones,key="sel14")
                 
         if 'mostrar_contenido14' not in st.session_state:
@@ -204,7 +204,7 @@ def main():
                       ,hide_index=True)
 
     with col2:
-        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
         tipo = st.selectbox('', opciones,key="sel15")
                 
         if 'mostrar_contenido15' not in st.session_state:
