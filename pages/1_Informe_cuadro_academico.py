@@ -180,7 +180,7 @@ def main():
                      ,hide_index=True)    
     with col2:
         opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
-        tipo = st.selectbox('', opciones)
+        tipo = st.selectbox('', opciones,"sel3")
         # Crear un estado inicial
         if 'mostrar_contenido3' not in st.session_state:
             st.session_state.mostrar_contenido3 = False
@@ -213,7 +213,7 @@ def main():
 
     with col2:
         opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
-        tipo = st.selectbox('', opciones)
+        tipo = st.selectbox('', opciones,"sel4")
         # Crear un estado inicial
         if 'mostrar_contenido4' not in st.session_state:
             st.session_state.mostrar_contenido4 = False
@@ -244,7 +244,7 @@ def main():
 
     with col2:
         opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
-        tipo = st.selectbox('', opciones)
+        tipo = st.selectbox('', opciones,"sel5")
         # Crear un estado inicial
         if 'mostrar_contenido5' not in st.session_state:
             st.session_state.mostrar_contenido5 = False
