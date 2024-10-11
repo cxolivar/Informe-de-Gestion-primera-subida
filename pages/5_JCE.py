@@ -93,15 +93,15 @@ def main():
                      ,hide_index=True)
     with col2:
                 
-        if 'mostrar_contenido' not in st.session_state:
-            st.session_state.mostrar_contenido = False
+        if 'mostrar_contenido21' not in st.session_state:
+            st.session_state.mostrar_contenido21 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="corporativo"):
-            st.session_state.mostrar_contenido = not st.session_state.mostrar_contenido
+            st.session_state.mostrar_contenido21 = not st.session_state.mostrar_contenido21
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido:
+        if st.session_state.mostrar_contenido21:
             
             grafico_cascada(corporativo,"Doctorado") 
 
@@ -120,15 +120,15 @@ def main():
 
     with col2:
                 
-        if 'mostrar_contenido2' not in st.session_state:
-            st.session_state.mostrar_contenido2 = False
+        if 'mostrar_contenido22' not in st.session_state:
+            st.session_state.mostrar_contenido22 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="providencia"):
-            st.session_state.mostrar_contenido2 = not st.session_state.mostrar_contenido2
+            st.session_state.mostrar_contenido22 = not st.session_state.mostrar_contenido22
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido2:
+        if st.session_state.mostrar_contenido22:
             
             grafico_cascada(providencia,"Doctorado") 
 
@@ -145,15 +145,15 @@ def main():
     
     with col2:
                 
-        if 'mostrar_contenido3' not in st.session_state:
-            st.session_state.mostrar_contenido3 = False
+        if 'mostrar_contenido23' not in st.session_state:
+            st.session_state.mostrar_contenido23 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="sanmiguel"):
-            st.session_state.mostrar_contenido3 = not st.session_state.mostrar_contenido3
+            st.session_state.mostrar_contenido23 = not st.session_state.mostrar_contenido23
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido3:
+        if st.session_state.mostrar_contenido23:
             
             grafico_cascada(sanmiguel,"Doctorado") 
 
@@ -170,15 +170,15 @@ def main():
 
     with col2:
                 
-        if 'mostrar_contenido4' not in st.session_state:
-            st.session_state.mostrar_contenido4 = False
+        if 'mostrar_contenido24' not in st.session_state:
+            st.session_state.mostrar_contenido24 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="talca"):
-            st.session_state.mostrar_contenido4 = not st.session_state.mostrar_contenido4
+            st.session_state.mostrar_contenido24 = not st.session_state.mostrar_contenido24
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido4:
+        if st.session_state.mostrar_contenido24:
             
             grafico_cascada(talca,"Doctorado") 
 
@@ -197,15 +197,15 @@ def main():
 
     with col2:
                 
-        if 'mostrar_contenido5' not in st.session_state:
-            st.session_state.mostrar_contenido5 = False
+        if 'mostrar_contenido25' not in st.session_state:
+            st.session_state.mostrar_contenido25 = False
         
         # Crear un botón
         if st.button('Mostrar graficos',key="tamuco"):
-            st.session_state.mostrar_contenido5 = not st.session_state.mostrar_contenido5
+            st.session_state.mostrar_contenido25 = not st.session_state.mostrar_contenido25
         
         # Mostrar el contenido si el estado es True
-        if st.session_state.mostrar_contenido5:
+        if st.session_state.mostrar_contenido25:
             
             grafico_cascada(temuco,"Doctorado") 
 
