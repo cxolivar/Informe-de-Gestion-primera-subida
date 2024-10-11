@@ -92,7 +92,7 @@ def main():
                      .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                      ,hide_index=True)
     with col2:
-        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica']
         tipo = st.selectbox('', opciones,key="sel21")
                 
         if 'mostrar_contenido21' not in st.session_state:
@@ -121,7 +121,7 @@ def main():
                      ,hide_index=True)
 
     with col2:
-        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica']
         tipo = st.selectbox('', opciones,key="sel22")
                 
         if 'mostrar_contenido22' not in st.session_state:
@@ -148,7 +148,7 @@ def main():
                      ,hide_index=True)    
     
     with col2:
-        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica']
         tipo = st.selectbox('', opciones,key="sel23")
                 
         if 'mostrar_contenido23' not in st.session_state:
@@ -175,7 +175,7 @@ def main():
                       ,hide_index=True)
 
     with col2:
-        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica']
         tipo = st.selectbox('', opciones,key="sel24")
                 
         if 'mostrar_contenido24' not in st.session_state:
@@ -204,7 +204,7 @@ def main():
                       ,hide_index=True)
 
     with col2:
-        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica']
         tipo = st.selectbox('', opciones,key="sel25")
                 
         if 'mostrar_contenido25' not in st.session_state:
