@@ -92,6 +92,8 @@ def main():
                      .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                      ,hide_index=True)
     with col2:
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        tipo = st.selectbox('', opciones,key="sel21")
                 
         if 'mostrar_contenido21' not in st.session_state:
             st.session_state.mostrar_contenido21 = False
@@ -103,7 +105,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido21:
             
-            grafico_cascada(corporativo,"Doctorado") 
+            grafico_cascada(corporativo,tipo) 
 
 
 
@@ -119,6 +121,8 @@ def main():
                      ,hide_index=True)
 
     with col2:
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        tipo = st.selectbox('', opciones,key="sel22")
                 
         if 'mostrar_contenido22' not in st.session_state:
             st.session_state.mostrar_contenido22 = False
@@ -130,7 +134,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido22:
             
-            grafico_cascada(providencia,"Doctorado") 
+            grafico_cascada(providencia,tipo) 
 
 
 
@@ -144,6 +148,8 @@ def main():
                      ,hide_index=True)    
     
     with col2:
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        tipo = st.selectbox('', opciones,key="sel23")
                 
         if 'mostrar_contenido23' not in st.session_state:
             st.session_state.mostrar_contenido23 = False
@@ -155,7 +161,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido23:
             
-            grafico_cascada(sanmiguel,"Doctorado") 
+            grafico_cascada(sanmiguel,tipo) 
 
 
 
@@ -169,6 +175,8 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        tipo = st.selectbox('', opciones,key="sel24")
                 
         if 'mostrar_contenido24' not in st.session_state:
             st.session_state.mostrar_contenido24 = False
@@ -180,7 +188,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido24:
             
-            grafico_cascada(talca,"Doctorado") 
+            grafico_cascada(talca,tipo) 
 
 
 
@@ -196,6 +204,8 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones =  ['Doctorado', 'Magíster',  'Título Profesional','Licenciatura','Sin Título ni Grado','Esp. Médica u Odontológica','Técnico de Nivel Superior','Técnico de Nivel Medio']
+        tipo = st.selectbox('', opciones,key="sel25")
                 
         if 'mostrar_contenido25' not in st.session_state:
             st.session_state.mostrar_contenido25 = False
@@ -207,7 +217,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido25:
             
-            grafico_cascada(temuco,"Doctorado") 
+            grafico_cascada(temuco,tipo) 
 
 
 
