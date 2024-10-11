@@ -147,6 +147,8 @@ def main():
                      ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
+        tipo = st.selectbox('', opciones)
         # Crear un estado inicial
         if 'mostrar_contenido2' not in st.session_state:
             st.session_state.mostrar_contenido2 = False
@@ -157,7 +159,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido2:
-            grafico_cascada(providencia,"Teoría") 
+            grafico_cascada(providencia,tipo) 
 
 
 
@@ -177,6 +179,8 @@ def main():
                      .background_gradient(cmap=colormap,subset=["2016","2017","2018","2019","2020","2021","2022","2023","2024"],axis=1)
                      ,hide_index=True)    
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
+        tipo = st.selectbox('', opciones)
         # Crear un estado inicial
         if 'mostrar_contenido3' not in st.session_state:
             st.session_state.mostrar_contenido3 = False
@@ -187,7 +191,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido3:
-            grafico_cascada(sanmiguel,"Teoría") 
+            grafico_cascada(sanmiguel,tipo) 
     
 
     # st.header('Resultados Talca')
@@ -208,6 +212,8 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
+        tipo = st.selectbox('', opciones)
         # Crear un estado inicial
         if 'mostrar_contenido4' not in st.session_state:
             st.session_state.mostrar_contenido4 = False
@@ -218,7 +224,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido4:
-            grafico_cascada(talca,"Teoría") 
+            grafico_cascada(talca,tipo) 
 
 
     # # st.header('Resultados Temuco')
@@ -237,6 +243,8 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
+        tipo = st.selectbox('', opciones)
         # Crear un estado inicial
         if 'mostrar_contenido5' not in st.session_state:
             st.session_state.mostrar_contenido5 = False
@@ -247,7 +255,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido5:
-            grafico_cascada(temuco,"Teoría") 
+            grafico_cascada(temuco,tipo) 
 
 
 if __name__ == '__main__':
