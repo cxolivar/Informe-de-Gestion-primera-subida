@@ -110,7 +110,7 @@ def main():
 
     with col2:
         opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
-        tipo = st.multiselect('', opciones)
+        tipo = st.selectbox('', opciones)
 
         
         # Crear un estado inicial
