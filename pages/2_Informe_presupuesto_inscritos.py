@@ -92,6 +92,8 @@ def main():
                      .background_gradient(cmap=colormap,subset=["2022","2023","2024"],axis=1)
                      ,hide_index=True)
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        tipo = st.selectbox('', opciones,key="sel6")
                 
         if 'mostrar_contenido6' not in st.session_state:
             st.session_state.mostrar_contenido6 = False
@@ -103,7 +105,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido6:
             
-            grafico_cascada(corporativo,"Teoría") 
+            grafico_cascada(corporativo,tipo) 
 
 
 
@@ -119,6 +121,8 @@ def main():
                      ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        tipo = st.selectbox('', opciones,key="sel7")
                 
         if 'mostrar_contenido7' not in st.session_state:
             st.session_state.mostrar_contenido7 = False
@@ -130,7 +134,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido7:
             
-            grafico_cascada(providencia,"Teoría") 
+            grafico_cascada(providencia,tipo) 
 
 
 
@@ -144,7 +148,8 @@ def main():
                      ,hide_index=True)    
     
     with col2:
-                
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        tipo = st.selectbox('', opciones,key="sel8")        
         if 'mostrar_contenido8' not in st.session_state:
             st.session_state.mostrar_contenido8 = False
         
@@ -155,7 +160,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido8:
             
-            grafico_cascada(sanmiguel,"Teoría") 
+            grafico_cascada(sanmiguel,tipo) 
 
 
 
@@ -169,6 +174,8 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        tipo = st.selectbox('', opciones,key="sel9")
                 
         if 'mostrar_contenido9' not in st.session_state:
             st.session_state.mostrar_contenido9 = False
@@ -180,7 +187,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido9:
             
-            grafico_cascada(talca,"Teoría") 
+            grafico_cascada(talca,tipo) 
 
 
 
@@ -196,6 +203,9 @@ def main():
                       ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno','Sup de practica y titulación','Simulación de Alta','Simulación de Baja','Ayudantía en sala','Aprendizaje Mediado']
+        tipo = st.selectbox('', opciones,key="sel10")
+        
                 
         if 'mostrar_contenido10' not in st.session_state:
             st.session_state.mostrar_contenido10 = False
@@ -207,7 +217,7 @@ def main():
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido10:
             
-            grafico_cascada(temuco,"Teoría") 
+            grafico_cascada(temuco,tipo) 
 
 
 
