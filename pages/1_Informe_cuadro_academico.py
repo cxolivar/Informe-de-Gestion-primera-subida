@@ -109,6 +109,10 @@ def main():
                      ,hide_index=True)
 
     with col2:
+        opciones = ['Teoría', 'Laboratorio/taller', 'Campo Clínico', 'Terreno']
+        tipo = st.multiselect('Selecciona tus lenguajes favoritos', opciones)
+
+        
         # Crear un estado inicial
         if 'mostrar_contenido' not in st.session_state:
             st.session_state.mostrar_contenido = False
@@ -119,7 +123,7 @@ def main():
         
         # Mostrar el contenido si el estado es True
         if st.session_state.mostrar_contenido:
-            grafico_cascada(corporativo,"Teoría") 
+            grafico_cascada(corporativo,tipo) 
              
 
 
